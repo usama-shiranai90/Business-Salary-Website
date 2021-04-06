@@ -1,0 +1,236 @@
+@font-face {
+    font-family: AvertaStd;
+    font-style: normal;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-regular.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-regular.otf) format("opentype");
+    font-display: swap
+}
+
+@font-face {
+    font-family: AvertaStd;
+    font-weight: 700;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-bold.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-bold.otf) format("opentype");
+    font-display: swap
+}
+
+@font-face {
+    font-family: AvertaStd;
+    font-weight: 600;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-semibold.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-semibold.otf) format("opentype");
+    font-display: swap
+}
+
+
+* {
+    text-rendering: geometricPrecision;
+    box-sizing: content-box;
+    word-break: break-word;
+    outline: none;
+    text-decoration: none;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    font-family: AvertaStd, -apple-system, BlinkMacSystemFont, sans-serif;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+
+}
+
+header{
+	display: flex;
+}
+
+.hcp3 {
+    background: none;
+    box-shadow: initial;
+    position: absolute;
+}
+
+.hcp2 {
+    height: 72px;
+    width: 100%;
+    position: sticky;
+    top: 0px;
+    z-index: 3;
+}
+
+* {
+    text-rendering: optimizeLegibility;
+    box-sizing: border-box;
+    word-break: break-word;
+    outline: none;
+    text-decoration: none;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+    font-family: AvertaStd,-apple-system,BlinkMacSystemFont,sans-serif;
+    -ms-scroll-chaining: none;
+    overscroll-behavior: none;
+}
+user agent stylesheet
+
+
+html {
+    line-height: 1.15;
+    text-size-adjust: 100%;
+}
+::selection {
+    color: #3c4852;
+    /* background: rgba(8,189,128,.4); */
+}
+
+
+.hp_p1 {
+    width: 1136px;
+    grid-template-columns: repeat(12, 1fr);
+    column-gap: 16px;
+    display: inline-grid;
+    margin: auto;
+    height: 100%;
+    grid-template-rows: auto;
+    position: relative;
+}
+
+.logoc1 {
+    line-height: 204%;
+    font-size: 12px;
+    font-weight: normal;
+    align-self: center;
+    height: 24px;
+    grid-column: 2 / 10;
+    pointer-events: auto;
+}
+
+
+
+
+.headerloginc2 {
+    position: relative;
+    border: none;
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-box-align: center;
+    align-items: center;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 80px;
+    height: 40px;
+    min-height: 40px;
+    color: rgb(255, 255, 255);
+    -webkit-user-drag: none;
+    user-select: none;
+    background-color: rgb(8, 189, 128);
+    transition: box-shadow 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+}
+
+button, [type="button"], [type="reset"], [type="submit"] {
+    appearance: button;
+}
+
+button, select {
+    text-transform: none;
+}
+
+button, input {
+    overflow: visible;
+}
+
+button, input, optgroup, select, textarea {
+    font-family: inherit;
+    font-size: 100%;
+    line-height: 1.15;
+    margin: 0px;
+	align-self: center;
+}
+
+
+
+.waveContainer{
+	position: absolute;
+	top: 300% ; left: 50%;
+	transform: translate(-50% , -50%);
+	text-align: center;
+	
+}
+
+h2{
+	margin-top: 20px;
+	color:  rgba(66,64,64,1.00);
+}
+
+
+svg{
+	position: absolute;
+	left: 0;
+}
+
+
+
+.sec1d {
+    width: 100%;
+    position: relative;
+    height: 640px;
+    background-image: url("https://static.uacdn.net/production/_next/static/images/goal/boy.svg"), url("https://static.uacdn.net/production/_next/static/images/goal/girl.svg"), linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(229, 244, 255, 0.44) 100%);
+    background-position: left bottom 20px, right bottom 20px, center center;
+    background-repeat: no-repeat;
+    text-align: center;
+    padding-top: 136px;
+	
+	}
+
+
+.kPGgra {
+    margin-left: auto;
+    margin-right: auto;
+    background: rgba(0, 0, 0, 0) linear-gradient(95.84deg, rgb(45, 129, 247) 0%, rgb(8, 189, 128) 100%) repeat scroll 0% 0%;
+    display: flex;
+    -moz-box-align: center;
+    align-items: center;
+    padding: 0px 8px 0px 0px;
+    border: medium none;
+    border-radius: 4px;
+}
+a {
+    background-color: transparent;
+}
+.btparaexpview {
+    color: rgb(255, 255, 255);
+    padding: 6px 6px 6px 12px;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 150% !important;
+}
+
+.iNbssp {
+    margin: 0px auto 40px;
+    width: 700px;
+}
+
+.iTnlHn {
+    font-weight: normal;
+    line-height: 150%;
+}
+.kGOZYF {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 120%;
+    color: rgb(60, 72, 82);
+    margin: 0px;
+}
+
+
+.h1welcome {
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 150%;
+    color: rgb(60, 72, 82);
+    margin: 0px;
+}
+
+
+
+
+
+
+
+
