@@ -36,18 +36,20 @@
 
 header{
 	display: flex;
+	 transition: transform 0.4s;
 }
 
 .hcp3 {
     background: none;
     box-shadow: initial;
     position: absolute;
+	
 }
 
 .hcp2 {
     height: 72px;
     width: 100%;
-    position: sticky;
+    position: relative;
     top: 0px;
     z-index: 3;
 }
@@ -121,6 +123,13 @@ html {
     user-select: none;
     background-color: rgb(8, 189, 128);
     transition: box-shadow 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
+}
+
+.headerloginc2:hover{
+	    background: rgba(0, 0, 0, 0) linear-gradient(95.84deg, rgb(45, 129, 247) 0%, rgb(8, 189, 128) 100%) repeat scroll 0% 0%;
+	transition: 0.4s;
+	width: 90px;
+	display: flex;
 }
 
 button, [type="button"], [type="reset"], [type="submit"] {
@@ -210,7 +219,7 @@ a {
     font-weight: normal;
     line-height: 150%;
 }
-.kGOZYF {
+.h3cls_txt {
     font-weight: bold;
     font-size: 24px;
     line-height: 120%;
@@ -230,13 +239,13 @@ a {
 
 /* 2nd Section ..*/
 
-.bRAeQv {
+.sec2d {
     width: 100%;
     position: relative;
 }
 
 
-.hnjzRJ {
+.secondsec_con_c2 {
     background-color: rgb(255, 255, 255);
     box-shadow: rgb(221 230 237 / 40%) 0px 16px 32px 0px;
     border-radius: 8px;
@@ -248,7 +257,7 @@ a {
     padding-top: 80px;
 }
 
-.hHuXyu {
+.h2-c2 {
     font-weight: bold;
     font-size: 32px;
     line-height: 120%;
@@ -257,7 +266,7 @@ a {
 }
 
 
-.ghQkmO {
+.ss_cc_c2 {
     display: flex;
     margin-left: 96px;
     margin-right: 96px;
@@ -278,10 +287,36 @@ a {
 }
 
 
-.hEZCsR {
+.multi-contact-c2{
+	background-color: rgba(255,255,255,1.00);
+	box-shadow: rgb(221 230 237 /50%) 0px 16px 32px 0px;
+    border-radius: 8px;
+	padding: 48px;
+}
+
+.multi-contact-c3 {
     width: 848px;
     margin: 160px auto;
     position: relative;
+}
+
+
+.p-mcbanner-c3{
+	font-weight: normal;
+	font-size: 14px;
+	line-height: 150%;
+	margin: 0px;
+}
+.p-mcbanner-c4{
+	    margin-top: 8px;
+    margin-bottom: 32px;
+    color: rgb(60, 72, 82);
+}
+.contact-lady-img{
+	position: absolute;
+    right: 0px;
+    bottom: 35px;
+	
 }
 
 .cXSOGp {
