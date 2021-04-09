@@ -5,10 +5,42 @@
     <title>Income-Coltax User-Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="Business-Salary-Website-Files/userDashBoard.css" rel="stylesheet" type="text/css">
-    <script src="js/script.js"></script>
+<!--    <script src="js/script.js"></script>-->
+
+    <style>
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            flex-basis: 100%;
+            margin-left: 60px;
+            background-color: rgb(245 240 240);
+            box-shadow: rgb(136 160 141 / 44%) 0px 16px 32px 0px;
+        }
+
+        .header {
+            margin: 14px;
+            text-align: center;
+        }
+
+        h2{
+            margin-top: 5px;
+            text-align: center;
+        }
+        span.main-color {
+            color: #5c9e6d;
+        }
+        a.navbar-brand {
+            font-size: 1.7em;
+        }
+    </style>
 
 </head>
-<body><div class="area"></div><nav class="main-menu">
+<body>
+    
+    <nav class="sidebar-menu">
+<!--    Un-ordered list of sidebar menu (Main Content)    -->
     <ul>
         <li>
             <a href="http://justinfarrow.com">
@@ -49,6 +81,7 @@
 
     </ul>
 
+<!--        Un-ordered list of Logout button-->
     <ul class="logout">
         <li>
             <a href="#">
@@ -59,6 +92,63 @@
             </a>
         </li>
     </ul>
+
+
 </nav>
+
+    <div class="header-content">
+        <div class="header">
+            <a class="navbar-brand" href="#">My<span class="main-color">Dashboard</span></a>
+
+        </div>
+    </div>
+
+    <div class="welcome">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="content">
+                        <h2>Welcome to Dashboard</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="statistics">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="box">
+                        <i class="fa fa-envelope fa-fw bg-primary"></i>
+                        <div class="info">
+                            <h3>1,245</h3> <span>Emails</span>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <i class="fa fa-file fa-fw danger"></i>
+                        <div class="info">
+                            <h3>34</h3> <span>Projects</span>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="box">
+                        <i class="fa fa-users fa-fw success"></i>
+                        <div class="info">
+                            <h3>5,245</h3> <span>Users</span>
+                            <p>Lorem ipsum dolor sit amet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 </body>
 </html>
