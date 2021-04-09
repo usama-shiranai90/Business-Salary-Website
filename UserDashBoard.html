@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+
     <title>Income-Coltax User-Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="Business-Salary-Website-Files/userDashBoard.css" rel="stylesheet" type="text/css">
@@ -30,9 +31,12 @@
         }
         span.main-color {
             color: #5c9e6d;
+            font-size: 0.7em;
         }
         a.navbar-brand {
-            font-size: 1.7em;
+            font-size: 2.7em;
+            color: darkgoldenrod;
+
         }
     </style>
 
@@ -108,8 +112,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="content">
-                        <h2>Welcome to Dashboard</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.</p>
+                        <h2 class="weldb-h2">Welcome to Dashboard</h2>
+                            <p class="weldb-p">You can look-into your product selling and other necessary information</p>
                     </div>
                 </div>
             </div>
@@ -117,36 +121,54 @@
     </div>
 
     <section class="statistics">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="box">
-                        <i class="fa fa-envelope fa-fw bg-primary"></i>
+        <div class="container-fluid cont-fl-c2">
+
+                <div class="cont-fluid-boxdata ">
+                    <div class="cont-fluid-box">
+
+                        <div class="icon-color">
+                            <i class="fa fa-envelope fa-fw bg-primary fa-c3"></i>
+                        </div>
                         <div class="info">
-                            <h3>1,245</h3> <span>Emails</span>
+                            <h3 class="box-h3">1,245</h3> <span>Emails</span>
                             <p>Lorem ipsum dolor sit amet</p>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="box">
-                        <i class="fa fa-file fa-fw danger"></i>
+                <div class="cont-fluid-boxdata cont-fluid-boxdata-c2" >
+                    <div class="cont-fluid-box">
+
+                        <div class="icon-color">
+                            <i class="fa fa-file fa-fw danger fa-c3"></i>
+
+                        </div>
                         <div class="info">
-                            <h3>34</h3> <span>Projects</span>
+                            <h3 class="box-h3">34</h3 > <span>Projects</span>
                             <p>Lorem ipsum dolor sit amet</p>
                         </div>
+
+
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="box">
-                        <i class="fa fa-users fa-fw success"></i>
+
+                <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
+                    <div class="cont-fluid-box">
+
+                        <div class="icon-color">
+                            <i class="fa fa-users fa-fw success fa-c3"></i>
+
+                        </div>
+
                         <div class="info">
-                            <h3>5,245</h3> <span>Users</span>
+                            <h3 class="box-h3">5,245</h3> <span>Users</span>
                             <p>Lorem ipsum dolor sit amet</p>
                         </div>
+
                     </div>
                 </div>
-            </div>
+
+
+
         </div>
     </section>
 
