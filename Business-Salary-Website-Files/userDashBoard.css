@@ -255,6 +255,23 @@ span{
 .row{
     margin: 0px 55px 45px 0px;
 }
+
+
+.ghp-div-c1 {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: 235px;
+    flex-wrap: wrap;
+    display: flex;
+    height: auto;
+    width: auto;
+    background-color: chocolate;
+}
+
+
+
+
 @media (min-width: 992px)
     .col-md-12 {
         width: 100%;

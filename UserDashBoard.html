@@ -6,7 +6,8 @@
     <title>Income-Coltax User-Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="Business-Salary-Website-Files/userDashBoard.css" rel="stylesheet" type="text/css">
-<!--    <script src="js/script.js"></script>-->
+    <!--    <script src="js/script.js"></script>-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
     <style>
 
@@ -25,26 +26,38 @@
             text-align: center;
         }
 
-        h2{
+        h2 {
             margin-top: 5px;
             text-align: center;
         }
+
         span.main-color {
             color: #5c9e6d;
             font-size: 0.7em;
         }
+
         a.navbar-brand {
             font-size: 2.7em;
             color: darkgoldenrod;
+
+        }
+        .container {
+/*            margin: 500px;
+            margin-top: 40px;
+            margin-left: 208px;*/
+
+            /*margin: 700px;*/
+            /*margin-top: 40px;*/
+            /*margin-left: 208px;*/
 
         }
     </style>
 
 </head>
 <body>
-    
-    <nav class="sidebar-menu">
-<!--    Un-ordered list of sidebar menu (Main Content)    -->
+
+<nav class="sidebar-menu">
+    <!--    Un-ordered list of sidebar menu (Main Content)    -->
     <ul>
         <li>
             <a href="http://justinfarrow.com">
@@ -85,7 +98,7 @@
 
     </ul>
 
-<!--        Un-ordered list of Logout button-->
+    <!--        Un-ordered list of Logout button-->
     <ul class="logout">
         <li>
             <a href="#">
@@ -100,77 +113,148 @@
 
 </nav>
 
-    <div class="header-content">
-        <div class="header">
-            <a class="navbar-brand" href="#">My<span class="main-color">Dashboard</span></a>
+<div class="header-content">
+    <div class="header">
+        <a class="navbar-brand" href="#">My<span class="main-color">Dashboard</span></a>
 
-        </div>
     </div>
+</div>
 
-    <div class="welcome">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="content">
-                        <h2 class="weldb-h2">Welcome to Dashboard</h2>
-                            <p class="weldb-p">You can look-into your product selling and other necessary information</p>
-                    </div>
+<div class="welcome">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content">
+                    <h2 class="weldb-h2">Welcome to Dashboard</h2>
+                    <p class="weldb-p">You can look-into your product selling and other necessary information</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+<section class="statistics">
+    <div class="container-fluid cont-fl-c2">
 
-    <section class="statistics">
-        <div class="container-fluid cont-fl-c2">
+        <div class="cont-fluid-boxdata ">
+            <div class="cont-fluid-box">
 
-                <div class="cont-fluid-boxdata ">
-                    <div class="cont-fluid-box">
-
-                        <div class="icon-color">
-                            <i class="fa fa-envelope fa-fw bg-primary fa-c3"></i>
-                        </div>
-                        <div class="info">
-                            <h3 class="box-h3">1,245</h3> <span>Emails</span>
-                            <p>Lorem ipsum dolor sit amet</p>
-                        </div>
-                    </div>
+                <div class="icon-color">
+                    <i class="fa fa-envelope fa-fw bg-primary fa-c3"></i>
                 </div>
-                <div class="cont-fluid-boxdata cont-fluid-boxdata-c2" >
-                    <div class="cont-fluid-box">
-
-                        <div class="icon-color">
-                            <i class="fa fa-file fa-fw danger fa-c3"></i>
-
-                        </div>
-                        <div class="info">
-                            <h3 class="box-h3">34</h3 > <span>Projects</span>
-                            <p>Lorem ipsum dolor sit amet</p>
-                        </div>
-
-
-                    </div>
+                <div class="info">
+                    <h3 class="box-h3">1,245</h3> <span>Emails</span>
+                    <p>Lorem ipsum dolor sit amet</p>
                 </div>
-
-                <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
-                    <div class="cont-fluid-box">
-
-                        <div class="icon-color">
-                            <i class="fa fa-users fa-fw success fa-c3"></i>
-
-                        </div>
-
-                        <div class="info">
-                            <h3 class="box-h3">5,245</h3> <span>Users</span>
-                            <p>Lorem ipsum dolor sit amet</p>
-                        </div>
-
-                    </div>
-                </div>
-
-
-
+            </div>
         </div>
-    </section>
+        <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
+            <div class="cont-fluid-box">
+
+                <div class="icon-color">
+                    <i class="fa fa-file fa-fw danger fa-c3"></i>
+
+                </div>
+                <div class="info">
+                    <h3 class="box-h3">34</h3> <span>Projects</span>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+
+
+            </div>
+        </div>
+
+        <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
+            <div class="cont-fluid-box">
+
+                <div class="icon-color">
+                    <i class="fa fa-users fa-fw success fa-c3"></i>
+
+                </div>
+
+                <div class="info">
+                    <h3 class="box-h3">5,245</h3> <span>Users</span>
+                    <p>Lorem ipsum dolor sit amet</p>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<div class="container">
+    <canvas id="myChart"></canvas>
+</div>
+
+<script>
+
+    let myChart = document.getElementById('myChart').getContext('2d');
+    // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontSize = 18;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    let massPopChart = new Chart(myChart, {
+        type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
+        data:{
+            labels:['Starto', 'Amazon', 'Yahoo', 'Hotmail', 'Gmail', 'Fudscam'],
+            datasets:[{
+                label:'Sellings',
+                data:[
+                    50,
+                    11,
+                    33,
+                    23,
+                    42,
+                    15
+                ],
+                //backgroundColor:'green',
+                backgroundColor:[
+                    'rgba(255, 99, 132, 0.6)',
+                    'rgba(54, 162, 235, 0.6)',
+                    'rgba(255, 206, 86, 0.6)',
+                    'rgba(75, 192, 192, 0.6)',
+                    'rgba(153, 102, 255, 0.6)',
+                    'rgba(255, 159, 64, 0.6)',
+                    'rgba(255, 99, 132, 0.6)'
+                ],
+                borderWidth:1,
+                borderColor:'#777',
+                hoverBorderWidth:3,
+                hoverBorderColor:'#000'
+            }]
+        },
+        options:{
+            title:{
+                display:true,
+                text:'Number Of Sales According To Product',
+                fontSize:25
+            },
+            legend:{
+                display:true,
+                position:'right',
+                labels:{
+                    fontColor:'#000'
+                }
+            },
+            layout:{
+                padding:{
+                    left:50,
+                    right:0,
+                    bottom:0,
+                    top:0
+
+                }
+            },
+            tooltips:{
+                enabled:true
+            }
+        }
+    });
+</script>
+
+
+
 
 </body>
 </html>
