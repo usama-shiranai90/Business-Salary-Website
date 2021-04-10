@@ -107,7 +107,7 @@ html {
 }
 
 
-.continueButton {
+.headerloginc2 {
     position: relative;
     border: none;
     display: flex;
@@ -129,7 +129,7 @@ html {
     transition: box-shadow 200ms ease-in-out 0s, transform 200ms ease-in-out 0s;
 }
 
-.continueButton:hover {
+.headerloginc2:hover {
     background: rgba(0, 0, 0, 0) linear-gradient(95.84deg, rgb(45, 129, 247) 0%, rgb(8, 189, 128) 100%) repeat scroll 0% 0%;
     transition: 0.4s;
     width: 90px;
