@@ -207,6 +207,7 @@ nav ul, nav li {
         margin-left: 235px;*/
     margin-left: 65px;
     margin-right: 65px;
+    margin-bottom: 50px;
 }
 
 .row {
@@ -332,6 +333,7 @@ span {
     flex-basis: 100%;
     margin-left: 240px;
     margin-right: 240px;
+    margin-bottom: 80px;
     box-shadow: rgba(175, 230, 186, 0.5) 0px 16px 32px 0px;
     background-color: rgb(251, 255, 250);
     /*background: linear-gradient(90deg, rgb(226, 210, 210) 0%, rgba(9,121,48,0.7680205871411064) 26%, rgba(13,50,51,1) 100%);*/
@@ -486,19 +488,33 @@ span {
 
 .img{
     width: 35%;
-    position: static;
+    position: absolute;
+    right: 0;
     background-image: url(https://static.uacdn.net/production/_next/static/images/goal/girl.svg), linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(229, 244, 255, 0.44) 100%);
-    background-position: left bottom 20px, right bottom 20px, center center;
+    /*background-position: left bottom 20px, right bottom 20px, center center;*/
     background-repeat: no-repeat;
-    text-align: center;
-    display: flex;
+    /*text-align: center;*/
+    /*display: flex;*/
+    /*flex-direction: row;*/
+    /*justify-content: flex-end;*/
     margin: auto auto;
     height: 400px;
     float: right;
-    margin-top: 31px;
+    /*margin-top: 31px;*/
 }
 
+/*.flex-image{*/
+/*    position: static;*/
+/*    !*width: auto;*!*/
+/*    top: 0;*/
+/*    right: 0;*/
+/*}*/
 
+.flex-image-div{
+    width: fit-content;
+    position: relative;
+    float: right;
+}
 
     .continueButton {
         position: relative;
@@ -544,3 +560,11 @@ span {
         margin: 0px;
         align-self: center;
     }
+
+#continueButton{
+    position: absolute;
+    left: 50%;
+    top: 30px;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
