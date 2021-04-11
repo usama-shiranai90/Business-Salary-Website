@@ -62,7 +62,7 @@
 
         </li>
         <li class="has-subnav">
-            <a id="psubmissionIcon" href="#" class="li-box active">
+            <a id="psubmissionIcon" href="#" class="li-box">
                 <i class="fa fa-laptop fa-2x"></i>
                 <span class="nav-text">
                             Product Submission
@@ -81,7 +81,7 @@
         </li>
 
         <li>
-            <a id="aboutusIcon" href="#" class="li-box">
+            <a id="aboutusIcon" href="#" class="li-box active">
                 <i class="fa fa-bar-chart-o fa-2x"></i>
                 <span class="nav-text">
                             About Us
@@ -163,9 +163,9 @@
 
                     <div class="icon-color">
                         <i class="fa fa-users fa-fw success fa-c3"></i>
-
+                        <
                     </div>
-
+                    >
                     <div class="info">
                         <h3 class="box-h3">5,245</h3> <span>Users</span>
                         <p>Lorem ipsum dolor sit amet</p>
@@ -178,9 +178,13 @@
         </div>
     </section>
 
+    <article>
+        <h1>Quote of the Day</h1>
+        <p>"As you get older three things happen. The first is your memory goes, and I can't remember the other two.</p>
+        <p><span class="name">Norman Wisdom</span></p>
+    </article>
 </div>
-
-<div id="productSub" class="main-product-submission-section" style="display: block">
+<div id="productSub" class="main-product-submission-section" style="display: none">
     <div class="header-content">
         <div class="header">
             <a class="navbar-brand" href="#">Product<span class="main-color">Submission</span></a>
@@ -189,18 +193,17 @@
 
     <div class="formsubmission-c1">
         <form class="form-c1 container-fluid" action=" " method="post" id="contact_form">
-
             <div class="header">
                 <h3 class=" h3cls_txt iTnlHn" style="font-size: 2.7em; color: darkgoldenrod;">
                     Welcome <span class="main-color">Please submit your form according</span>
                 </h3>
             </div>
-<!--<div style="position: relative">-->
+            <!--<div style="position: relative">
 
-<!--            <section class="img"></section>-->
-<!--</div>-->
+                        <section class="img"></section>
+            </div>-->
 
-            <div class="flex-image-div" >
+            <div class="flex-image-div">
                 <img src="https://static.uacdn.net/production/_next/static/images/goal/girl.svg">
             </div>
             <div style="width: fit-content;display: flex; flex-direction: column">
@@ -209,18 +212,17 @@
                 <div class="select">
                     <select name="selectID" id="selectID">
                         <option selected disabled hidden>Product Name</option>
-    <!--                    <option value="1">Scampage</option>-->
-    <!--                    <option value="2">Antibot Scampage</option>-->
-    <!--                    <option value="3">Monthly Cpanel</option>-->
-    <!--                    <option value="4">Hacked Cpanel</option>-->
-    <!--                    <option value="5">Amazon Smtp</option>-->
-    <!--                    <option value="6">Amazon Office Smtp</option>-->
-    <!--                    <option value="7">Monthly Rdp</option>-->
-    <!--                    <option value="8">Hacked Rdp</option>-->
-    <!--                    <option value="9">Email Leads</option>-->
+                        <!--                        <option value="1">Scampage</option>
+                                                <option value="2">Antibot Scampage</option>
+                                                <option value="3">Monthly Cpanel</option>
+                                                <option value="4">Hacked Cpanel</option>
+                                                <option value="5">Amazon Smtp</option>
+                                                <option value="6">Amazon Office Smtp</option>
+                                                <option value="7">Monthly Rdp</option>
+                                                <option value="8">Hacked Rdp</option>
+                                                <option value="9">Email Leads</option>-->
                     </select>
                 </div>
-
                 <!--            <div class="group">
                                 <select name="state" >
                                     <option >Please select the Product</option>
@@ -233,8 +235,6 @@
                                 <span class="bar"></span>
                                 <label>Select Product</label>
                             </div>-->
-
-
                 <div class="group">
                     <input type="text" required="">
                     <span class="highlight"></span>
@@ -245,12 +245,10 @@
                 <div class="select">
                     <select name="selectID" id="paymentID">
                         <option selected disabled hidden>Payment Method</option>
-    <!--                    <option value="1">Btc</option>-->
-    <!--                    <option value="2">Perfect Money</option>-->
-
+<!--                                            <option value="1">Btc</option>
+                                            <option value="2">Perfect Money</option>-->
                     </select>
                 </div>
-
 
                 <div class="group">
                     <input type="text" required="">
@@ -259,7 +257,6 @@
                     <label>Product Investment</label>
                 </div>
 
-
                 <div class="group">
                     <input id="datepick" type="text" required="" name="date">
                     <span class="highlight"></span>
@@ -267,16 +264,16 @@
                     <label>Date Of Submission</label>
                     <script>
 
-                        $(document).ready(function(){
-                            $("#datepick").click(function(event){
+                        $(document).ready(function () {
+                            $("#datepick").click(function (event) {
                                 event.stopPropagation();
-                                if(document.getElementById('datepick').type == "text")
+                                if (document.getElementById('datepick').type === "text")
                                     document.getElementById('datepick').type = 'date';
                             });
 
-                            $("body").click(function(event){
+                            $("body").click(function (event) {
                                 event.stopPropagation();
-                                if(document.getElementById('datepick').type == "date")
+                                if (document.getElementById('datepick').type === "date")
                                     document.getElementById('datepick').type = 'text';
                             });
                         });
@@ -288,7 +285,7 @@
                 <div class="alert alert-success" role="alert" id="success_message">Success <i
                         class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
                 </div>
-    <br>
+                <br>
                 <!-- Button -->
                 <div class="group">
                     <label class="col-md-4 control-label"></label>
@@ -310,7 +307,7 @@
 
 </div>
 
-<div id="requestPage" class="main-request-page-section" style="display: none">
+<div id="requestPage" class="main-request-page-section" style="display:none ">
     <div class="header-content">
         <div class="header">
             <a class="navbar-brand" href="#">Page<span class="main-color">Request</span></a>
@@ -318,15 +315,137 @@
         </div>
     </div>
 
+
+    <div class="formsubmission-c1">
+        <form class="form-c1 container-fluid" action=" " method="post" id="page_request_form">
+            <div class="header">
+                <h3 class=" h3cls_txt iTnlHn" style="font-size: 2.7em; color: darkgoldenrod;">
+                    Welcome <span class="main-color">Please submit your form according</span>
+                </h3>
+            </div>
+            <div class="flex-image-div">
+                <img class="trust-c1" src="Business-Salary-Website-Files/trust.svg" alt="Trust-image">
+            </div>
+            <div style="width: fit-content;display: flex; flex-direction: column">
+                <h3 color="#3C4852" class=" h3cls_<txt iTnlHn sub-head-c3">Complete all fields to generate a request for <strong>Developer's</strong></h3>
+                <br>
+                <div class="group">
+                    <input type="text" required="" >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Website-URL-Link</label>
+                </div>
+
+                <div class="group">
+                    <textarea type="text" id="info_product" name="info_product" required></textarea>
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Product Information</label>
+                </div>
+
+                <div class="group">
+                    <input id="product_to_submit" type="text" required="" name="date">
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Date To Submit</label>
+                    <script>
+
+                        $(document).ready(function () {
+                            $("#product_to_submit").click(function (event) {
+                                event.stopPropagation();
+                                if (document.getElementById('product_to_submit').type === "text")
+                                    document.getElementById('product_to_submit').type = 'date';
+                            });
+
+                            $("body").click(function (event) {
+                                event.stopPropagation();
+                                if (document.getElementById('product_to_submit').type === "date")
+                                    document.getElementById('product_to_submit').type = 'text';
+                            });
+                        });
+
+                    </script>
+                </div>
+
+                <!-- Success message -->
+                <div class="alert alert-success" role="alert" id="success_message">Success <i
+                        class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
+                </div>
+                <br>
+                <!-- Button -->
+                <div class="group">
+                    <label class="col-md-4 control-label"></label>
+
+                    <div id="continueButton">
+                        <button id="loginButton" type="button" aria-label="Login"
+                                class="Button__StyleButtonHeaderLogin continueButton">
+                            Continue
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            </fieldset>
+        </form>
+
+    </div>
+
 </div>
 
-<div id="aboutUs" class="main-about-us-section" style="display: none">
+<div id="aboutUs" class="main-about-us-section" style="display: block">
     <div class="header-content">
         <div class="header">
             <a class="navbar-brand" href="#">About<span class="main-color">Us!</span></a>
-
         </div>
     </div>
+
+    <div class="aboutUsSection aus-c2">
+
+        <div class="card-owl">
+
+            <div class="card-header">
+
+                <div class="waves-container">
+                    <div class="wave wave1"></div>
+                    <div class="wave wave2"></div>
+                    <div class="wave wave3"></div>
+                </div>
+                <img class="profile-img" src="Business-Salary-Website-Files/pp.jpg" alt="my picture profile.">
+            </div>
+
+            <div class="card-body">
+                <h2>OneEyedOwl</h2>
+                <p>My name OneEyedOwl , Dedicated and Performance-driven software engineering Intern with pro-active approach and determination to solve and successfully finish all assigned task. capable of showing firm and positive response while working under pressure. Effective team player offering extraordinary analytical skills and the important ability to think critically. Eager to absorb as much knowledge and insight as possible in pursuance of my goals.</p>
+                <a href="http://google.com.pk" class="btn">check my work</a>
+            </div>
+
+
+
+        </div>
+
+
+        <div class="card-zero">
+
+            <div class="card-header">
+                <div class="waves-container">
+                    <div class="wave wave1"></div>
+                    <div class="wave wave2"></div>
+                    <div class="wave wave3"></div>
+                </div>
+                <img class="profile-img" src="Business-Salary-Website-Files/pp.jpg" alt="my picture profile.">
+            </div>
+            <div class="card-body">
+                <h2><italic>Mr</italic>.Zero</h2>
+                <p>My name Mr.Zero , Dedicated and Performance-driven software engineering Intern with pro-active approach and determination to solve and successfully finish all assigned task. capable of showing firm and positive response while working under pressure. Effective team player offering extraordinary analytical skills and the important ability to think critically. Eager to absorb as much knowledge and insight as possible in pursuance of my goals.</p>
+                <a href="http://google.com.pk" class="btn">check my work</a>
+            </div>
+
+
+
+        </div>
+
+    </div>
+
 
 </div>
 

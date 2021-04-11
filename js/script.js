@@ -33,7 +33,7 @@ const aboutUs_form_ID = document.getElementById("aboutUs");
 
 $(document).ready(function () {
 
-    var iconSection_array = ['#dashboardIcon', '#psubmissionIcon', 'requestPageIcon',
+    var iconSection_array = ['#dashboardIcon', '#psubmissionIcon', '#requestPageIcon',
         '#aboutusIcon'];
 
     $('#dashboardIcon').click(function () {
