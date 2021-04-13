@@ -36,8 +36,8 @@
 
 }
 
-.fa-2x {
-    font-size: 2em;
+    .fa-2x {
+    /*font-size: 2em;*/
 }
 
 .fa {
@@ -48,7 +48,46 @@
     text-align: center;
     vertical-align: middle;
     font-size: 20px;
+    top: 8px;
 
+}
+
+.kPGgra {
+    margin-left: 49%;
+    margin-right: 35%;
+    background: rgba(0, 0, 0, 0) linear-gradient(
+            95.84deg
+            , rgb(45, 129, 247) 0%, rgb(8, 189, 128) 100%) repeat scroll 0% 0%;
+    align-items: center;
+    border: medium none;
+    border-radius: 4px;
+    color: rgb(255, 255, 255);
+    padding: 7px 20px 7px 20px;
+    font-weight: 105;
+    font-size: 15px;
+    line-height: 150% !important;
+}
+
+
+.if-c1{
+    border: transparent;
+    line-height: normal;
+    height: 85vh;
+    width: -webkit-fill-available;
+    width:fit-content;
+    background-color: #eee;
+    width: -moz-available;
+
+}
+
+.if-c1::-webkit-scrollbar {
+    display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.if-c1 {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 .fa-home {
@@ -455,6 +494,12 @@ span {
         background:rgba(8, 189, 128, 0.22);
 
     }
+
+    .month-select{
+
+    }
+
+
     select::-ms-expand {
         display: none;
     }
