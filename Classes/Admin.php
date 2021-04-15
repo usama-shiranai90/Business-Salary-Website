@@ -1,14 +1,17 @@
 <?php
 include "Database Connection.php";
+include "access.php";
+
 
 class Admin
 {
-
     private $connection = null;
+    private $access = null;
 
     public function __construct()
     {
         $this->connection = Database::getConnection();
+        $this->access =  new access();
     }
 
     public function verifyAdmin($username, $password): bool
@@ -22,11 +25,6 @@ class Admin
         else
             return false;
 
-    }
-
-    public function logout()
-    {
-        header("Location: index.php");
     }
 
     public function getProductsList()
@@ -49,80 +47,116 @@ class Admin
         }
     }
 
-    public function getEmployeesDetails($month)
+    public function getEmployeesDetails($month): bool
     {
-        $sql = "select e.employeeID,e.Name, COUNT(*), SUM(investment), SUM(ea.price), SUM(ea.salary) from employeeachievements ea join employee e on e.employeeID = ea.employeeID where monthname(submitionDate) = '$month' group by ea.employeeID";
+        if ($this->access->inactivityDestroyDiff()) {
+            return false;
+        } else {
+            $backButton = "<button id='back' class='kPGgra' value='Back'>Back</button>";
 
-        $result = $this->connection->query($sql);
+            $sql = "select e.employeeID,e.Name, COUNT(*), SUM(investment), SUM(ea.price), SUM(ea.salary) from employeeachievements ea join employee e on e.employeeID = ea.employeeID where monthname(submitionDate) = '$month' group by ea.employeeID";
 
-        if (mysqli_num_rows($result) > 0) {
-            echo "<table class='achievementsTable'>
+
+
+            $result = $this->connection->query($sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                $output = "<table id='table' class='achievementsTable'>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Total Achievements</th>
                 <th>Total Price</th>
                 <th>Total Investment</th>
                 <th>Total Salary</th>
-                <th>Actions</th>
             </tr>";
 
-            foreach ($result as $row) {
-                echo '<tr>';
-                echo '<td>' . $row["Name"] . '</td>';
-                echo '<td>' . $row['COUNT(*)'] . '</td>';
-                echo '<td>' . $row['SUM(ea.price)'] . '</td>';
-                echo '<td>' . $row['SUM(investment)'] . '</td>';
-                echo '<td>' . $row['SUM(ea.salary)'] . '</td>';
-
-                echo '<td>
-
-<a href="../Classes/AchievementDetails.php?empID='.$row["employeeID"].'&month='.$_POST['months'].'">Expand</a>
-
-</td>';
-                echo '</tr>';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    $output .= '<tr>';
+                    $output .= '<td>' . $row["employeeID"] . '</td>';
+                    $output .= '<td>' . $row["Name"] . '</td>';
+                    $output .= '<td>' . $row['COUNT(*)'] . '</td>';
+                    $output .= '<td>' . $row['SUM(ea.price)'] . '</td>';
+                    $output .= '<td>' . $row['SUM(investment)'] . '</td>';
+                    $output .= '<td>' . $row['SUM(ea.salary)'] . '</td>';
+                    $output .= '</tr>';
+                }
+                $output .= "</table>";
+                echo $backButton;
+                echo $output;
             }
-            echo "</table>";
+            else{
+                $output = "<div style='text-align: center; align-content: center'>
+                            <br>
+                            <br>
+                            <br>
+                            No Records Found
+                            <br>
+                            <br>
+                            <br>
+                         </div>";
+                echo $backButton;
+                echo $output;
+            }
+            return true;
         }
-
     }
 
     public function showEmployeeMonthlyAchievements($employeeID, $month)
     {
-        $sql = /** @lang text */
-            "select e.achievementID, p.productName, e.price, p2.paymentName, e.investment, e.salary, e.submitionDate from products p 
+        if ($this->access->inactivityDestroyDiff()) {
+            return false;
+        } else {
+            $sql = /** @lang text */
+                "select e.achievementID, p.productName, e.price, p2.paymentName, e.investment, e.salary, e.submitionDate from products p 
             join employeeachievements e on p.productID = e.productID join paymenttypes p2 on
             p2.typeID = e.paymentTypeID where employeeID = '$employeeID' and monthname(submitionDate) = '$month'
             order by submitionDate ASC";
 
-        $result = $this->connection->query($sql);
-        echo "<table class = 'achievementsTable'>
+            $result = $this->connection->query($sql);
+            $nameHeader = '<div class="header">
+                        <h3 class=" h3cls_txt iTnlHn" style="color: darkgoldenrod; text-align: center">
+                            <span style="font-size: 2.2em;" class="main-color">' . $this->getEmployeeName($employeeID) . '</span>
+                        </h3>
+                  </div>';
+            $backButton = "<button id='back' class='kPGgra'  value='Back'>Back</button>";
+            $output = "<table id='table1' class = 'achievementsTable'>
             <tr>
+                <th>Achievement ID</th>
                 <th>Product</th>
                 <th>Price</th>
                 <th>Payment Type</th>              
                 <th>Investment</th>
                 <th>Salary</th>
                 <th>Submission Date</th>
-                <th>Action</th>
             </tr>";
 
-        foreach ($result as $row) {
-            echo '<tr>';
-            echo '<td>' . $row["productName"] . '</td>';
-            echo '<td>' . $row["price"] . '</td>';
-            echo '<td>' . $row["paymentName"] . '</td>';
-            echo '<td>' . $row['investment'] . '</td>';
-            echo '<td>' . $row['salary'] . '</td>';
-            echo '<td>' . $row['submitionDate'] . '</td>';
-            echo '<td><a href="Editor.php?empID=' . $employeeID . '&month=' . $month . '&aid=' . $row['achievementID'] . '">Edit</a></td>';
-            echo '</tr>';
+            foreach ($result as $row) {
+                $output .= '<tr>';
+                $output .= '<td>' . $row["achievementID"] . '</td>';
+                $output .= '<td>' . $row["productName"] . '</td>';
+                $output .= '<td>' . $row["price"] . '</td>';
+                $output .= '<td>' . $row["paymentName"] . '</td>';
+                $output .= '<td>' . $row['investment'] . '</td>';
+                $output .= '<td>' . $row['salary'] . '</td>';
+                $output .= '<td>' . $row['submitionDate'] . '</td>';
+                $output .= '</tr>';
+            }
+            $output .= "</table>";
+
+            echo $backButton;
+            echo $nameHeader;
+            echo $output;
+            return false;
         }
-        echo "</table>";
     }
 
     public function editEmployeeMonthlyAchievements($productName, $price, $paymentName, $investment, $submitionDate, $achievementID)
     {
-
+        if ($this->access->inactivityDestroyDiff()) {
+            return false;
+        }
+        $_SESSION["login_time_stamp"] = time();
         $sql1 = /** @lang text */
             "select productID from products where productName = '$productName'";
 
@@ -155,6 +189,9 @@ class Admin
             echo "Error: " . $sql . "<br>" . $this->connection->error;
         }
     }
+
+
+
 
     public function getProductName($aid)
     {

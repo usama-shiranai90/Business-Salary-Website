@@ -64,7 +64,6 @@ class Employee{
         }
         $employeeID = $_SESSION["employeeID"];
 
-
         $sql2 =/** @lang text */
             "SELECT typeID FROM paymenttypes where paymentName = \"$paymentType\"";
         $result2 = $this->connection -> query($sql2);

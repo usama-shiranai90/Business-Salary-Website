@@ -1,6 +1,5 @@
 <?php
 include "Classes/Admin.php";
-include "Classes/access.php";
 require "Classes/Employee.php";
 if(session_status() == PHP_SESSION_NONE){
     session_start();
@@ -16,6 +15,8 @@ if (isset($_POST["signin"])) {
     if (!empty($_POST["username"]) && !empty($_POST["password"])) {
         $employeeAuthenticated = $emp->verifyEmployee($_POST["username"], $_POST["password"]);
         if ($employeeAuthenticated) {
+
+            $_SESSION["login_time_stamp"] = time();
             $_SESSION["loggedIn"] = true;
             header("Location: userDashboard.php");
 
@@ -23,6 +24,7 @@ if (isset($_POST["signin"])) {
             $adminAuthenticated = $manipulate->verifyAdmin($_POST["username"], $_POST["password"]);
             if ($adminAuthenticated)
             {
+                $_SESSION["login_time_stamp"] = time();
                 $_SESSION["loggedIn"] = true;
                 header("Location: adminDashboard.php");
             }
@@ -184,7 +186,7 @@ if (isset($_POST["signin"])) {
 
             <h5 color="#3C4852" class="H5-ozdkiq-0 h5-c2"> Continue your journey by inserting credentials </h5>
             <div class="group">
-                <input name="username" type="text" required>
+                <input name="username" type="text" value="bukhari" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>UserID</label>
@@ -192,7 +194,7 @@ if (isset($_POST["signin"])) {
 
 
             <div class="group">
-                <input name="password" type="password" required>
+                <input name="password" type="password" value="usama123" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Password</label>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="select" style="margin: 3% 38% 5% 38%">
+    <select id="monthSelector" name="months" required>
+        <option value="none" selected disabled hidden>
+            Month
+        </option>
+        <option value="January">January</option>
+        <option value="February">February</option>
+        <option value="March">March</option>
+        <option value="April">April</option>
+        <option value="May">May</option>
+        <option value="June">June</option>
+        <option value="July">July</option>
+        <option value="August">August</option>
+        <option value="September">September</option>
+        <option value="October">October</option>
+        <option value="November">November</option>
+        <option value="December">December</option>
+    </select>
+</div>
+<script>
+    $(document).ready(function (){
+        $("#monthSelector").click(function (){
+            thisMonth = document.getElementById('monthSelector').value;
+            if(thisMonth !== "none"){
+                $.ajax({
+                    url: 'Classes/Summary.php',
+                    type: 'POST',
+                    data: ({month: thisMonth}),
+                    success: function (data){
+                        $("#summaryDiv").html(data);
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

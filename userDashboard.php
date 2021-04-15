@@ -1,40 +1,16 @@
 <?php
-
-include 'Classes/access.php';
 include 'Classes/Admin.php';
 include 'Classes/Employee.php';
-$flag =  loggedIn();
-if ($flag === false){
-    header("Location: index.php");
-}
-
+session_start();
 $admin = new Admin();
-$employee =  new Employee();
+$emp =  new Employee();
 
-if (isset($_POST["productSubmit"])) {
-    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
-        $employeeAuthenticated = $emp->verifyEmployee($_POST["username"], $_POST["password"]);
-        if ($employeeAuthenticated) {
-            $_SESSION["loggedIn"] = true;
-            header("Location: userDashboard.php");
+if (isset($_POST["productSubmit"])){
 
-        } else {
-            $adminAuthenticated = $manipulate->verifyAdmin($_POST["username"], $_POST["password"]);
-            if ($adminAuthenticated)
-            {
-                $_SESSION["loggedIn"] = true;
-                header("Location: adminDashboard.php");
-            }
-            else{
-                $_SESSION["loggedIn"] = false;
-                $errorNotifcation = "Invalid Credentials";
-            }
-
-            $notify = 'notify body';
-            $displayType = 'float';
-        }
-    }
+    $emp->submitDetails($_POST['selectID'], $_POST['productPrice'], $_POST['selectID-payment'], $_POST['productInvestment'], $_POST['dateOfSubmit']);
+//    header("Location: userDashboard.php");
 }
+
 
 
 ?>
@@ -138,7 +114,7 @@ if (isset($_POST["productSubmit"])) {
     <!--        Un-ordered list of Logout button-->
     <ul class="logout">
         <li>
-            <a href="index.php">
+            <a href="Classes/logout.php">
                 <i class="fa fa-power-off "></i>
                 <span class="nav-text">
                             Logout
@@ -252,9 +228,9 @@ if (isset($_POST["productSubmit"])) {
                 <h3 color="#3C4852" class=" h3cls_txt iTnlHn">Please Fill all the fields to continue.</h3>
                 <!-- Selector-->
                 <div class="select">
-                    <select name="selectID" id="selectID">
-                        <option selected disabled hidden>Product Name</option>
-                        <option value="1">Scampage</option>
+                    <select name="selectID" id="selectID" required="">
+                        <option selected disabled hidden>Products</option>
+<!--                        <option value="1">Scampage</option>
                         <option value="2">Antibot Scampage</option>
                         <option value="3">Monthly Cpanel</option>
                         <option value="4">Hacked Cpanel</option>
@@ -262,34 +238,35 @@ if (isset($_POST["productSubmit"])) {
                         <option value="6">Amazon Office Smtp</option>
                         <option value="7">Monthly Rdp</option>
                         <option value="8">Hacked Rdp</option>
-                        <option value="9">Email Leads</option>
+                        <option value="9">Email Leads</option>-->
+                        <?php $admin->getProductsList();?>
                     </select>
                 </div>
 
                 <div class="group">
-                    <input type="text" required="">
+                    <input name="productPrice" type="text" required="">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Product Price</label>
                 </div>
 
                 <div class="select">
-                    <select name="selectID" id="paymentID">
+                    <select name="selectID-payment" id="paymentID" required>
                         <option selected disabled hidden>Payment Method</option>
-                        <!--                                            <option value="1">Btc</option>
-                                                                    <option value="2">Perfect Money</option>-->
+<!--                        <option selected>--><?php //echo $admin->getProductPaymentType()?><!--</option-->
+                        <?php $admin->getPaymentTypesList();?>
                     </select>
                 </div>
 
                 <div class="group">
-                    <input type="text" required="">
+                    <input name="productInvestment" type="text" required="">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Product Investment</label>
                 </div>
 
                 <div class="group">
-                    <input id="datepick" type="text" required="" name="date">
+                    <input id="datepick" type="text" required="" name="dateOfSubmit">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Date Of Submission</label>
@@ -332,6 +309,10 @@ if (isset($_POST["productSubmit"])) {
 
             </fieldset>
         </form>
+
+        <?php
+
+        ?>
 
     </div>
 
