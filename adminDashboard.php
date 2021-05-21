@@ -6,13 +6,19 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-$access->inactivityDestroy();
+/*$access->inactivityDestroy();
 $flag = $access->loggedIn();
 
 if (!$flag) {
     header("Location: index.php");
-}
+}*/
 $admin = new Admin();
+    
+    if (isset($_POST["upload"])) {
+//        echo "waroo";
+       echo "waroo".$admin->uploadFile();
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -22,25 +28,14 @@ $admin = new Admin();
     <title>AdminPage</title>
 
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="Business-Salary-Website-Files/tableStyle.css" rel="stylesheet" type="text/css">
     <link href="Business-Salary-Website-Files/userDashBoard.css" rel="stylesheet" type="text/css">
+    <link href="Business-Salary-Website-Files/uploadImage.css" rel="stylesheet" type="text/css">
+    
     <script src="Business-Salary-Website-Files/scripts/script.js"></script>
 
     <style>
-        .kPGgra{
-            margin-left: auto;
-            margin-right: auto;
-            margin-top: 20px;
-            background: rgba(0, 0, 0, 0) linear-gradient(
-                    95.84deg
-                    , rgb(45, 129, 247) 0%, rgb(8, 189, 128) 100%) repeat scroll 0% 0%;
-            display: flex;
-            -moz-box-align: center;
-            align-items: center;
-            border: medium none;
-            border-radius: 4px;
-        }
-
-
+        
         .header-content {
             display: flex;
             flex-direction: column;
@@ -73,79 +68,7 @@ $admin = new Admin();
         }
 
     </style>
-    <style>
-
-        .achievementsTable {
-            font-family: 'Nunito', sans-serif;
-            width: 90%;
-            margin: 3% auto;
-        }
-
-        .achievementsTable th {
-            font-weight: 400;
-            background: #8a97a0;
-            color: #FFF;
-        }
-
-        .achievementsTable tr {
-            background: #f4f7f8;
-            border-bottom: 1px solid #FFF;
-            margin-bottom: 5px;
-        }
-
-        .achievementsTable tr:nth-child(even) {
-            background: #e8eeef;
-        }
-        .achievementsTable tr:hover {
-            background: rgba(8,8,8,0.28);
-            border-bottom: 1px solid #FFF;
-            margin-bottom: 5px;
-            cursor: pointer;
-        }
-
-        .achievementsTable tr:nth-child(even):hover {
-            background: rgba(8,8,8,0.28);
-        }
-
-        .achievementsTable th, td {
-            padding: 20px;
-            position: center;
-            font-weight: 300;
-            text-align: center;
-            width: border-box;
-        }
-
-        .achievementsTable td > a {
-            position: center;
-            margin: -1px auto;
-            text-decoration: none;
-            display: flex;
-            /*align-self: center;*/
-            justify-content: center;
-            font-size: 14px;
-            font-weight: bold;
-            -webkit-box-align: center;
-            align-items: center;
-            cursor: pointer;
-            width: 80px;
-            height: 30px;
-            min-height: 30px;
-            color: rgb(255, 255, 255);
-            -webkit-user-drag: none;
-            user-select: none;
-            background-color: rgb(8, 189, 128);
-            border-radius: 4px;
-        }
-
-        .achievementsTable td > a:hover {
-            background: rgba(0, 0, 0, 0) linear-gradient(
-                    95.84deg, rgb(20, 236, 31) 0%, rgb(114, 7, 7) 100%) repeat scroll 0% 0%;
-            transition: 0.4s;
-            width: 90px;
-            display: flex;
-        }
-
-    </style>
+ 
 </head>
 <body>
 
@@ -171,6 +94,15 @@ $admin = new Admin();
                         </span>
             </a>
 
+        </li>
+
+        <li>
+            <a id="uploadPageIcon" href="#" class="li-box">
+                <i class="fa fa-upload"></i>
+                <span class="nav-text">
+                            Upload Pages
+                        </span>
+            </a>
         </li>
 
         <li>
@@ -200,7 +132,7 @@ $admin = new Admin();
 
 </nav>
 
-
+<!-- Dashboard section-->
 <div id="dashboard" class="main-dashboard-section" style="display: block">
 
     <div class="header-content">
@@ -250,10 +182,13 @@ $admin = new Admin();
                     </div>
                     <div class="info">
                         <h3 class="box-h3"><?php
-                            $getMonthlySalarytoPay = (string)$admin->getMonthlySales();
+                            $getMonthlySalarytoPay = (float)$admin->getMonthlySales();
 
-                            $arr = str_split($getMonthlySalarytoPay, "3");
-                            echo $monthlySalaryPay = implode(",", $arr);
+/*                            $arr = str_split($getMonthlySalarytoPay, "3");
+                            echo $monthlySalaryPay = implode(",", $arr);*/
+
+                             echo '$'.number_format("$getMonthlySalarytoPay",1)
+
                             ?></h3> <span>Total Sale</span>
                         <p>contains all sales made by users upto this day.</p>
                     </div>
@@ -271,10 +206,14 @@ $admin = new Admin();
                     </div>
                     <div class="info">
                         <h3 class="box-h3"><?php
-                            $monthlySalaryPay = (string)$admin->getMonthlySalarytoPay();
+                            $monthlySalaryPay = (float)$admin->getMonthlySalarytoPay();
+
+/*                            if ($monthlySalaryPay)
                             $arr = str_split($monthlySalaryPay, "3");
-                            $monthlySalaryPay = implode(",", $arr);
-                            echo $monthlySalaryPay ?></h3> <span>Total Salary</span>
+                            $monthlySalaryPay = implode(",", $arr);*/
+
+
+                          echo '$'.number_format("$monthlySalaryPay",1)  ?></h3> <span>Total Salary</span>
                         <p>contains overall salary to pay</p>
                     </div>
 
@@ -292,6 +231,7 @@ $admin = new Admin();
     </article>
 </div>
 
+<!-- User Product Sold Section -->
 <div id="productSub" class="main-product-submission-section" style="display: none ">
     <div class="header-content">
         <div class="header">
@@ -334,7 +274,6 @@ $admin = new Admin();
     </div>
 
 </div>
-
 <script>
     $(document).ready(function () {
         $("#monthSelector").click(function () {
@@ -360,9 +299,146 @@ $admin = new Admin();
     });
 </script>
 
+<!-- Upload Page Section -->
+<div id="uploadPage" class="main-product-submission-section" style="display: none ">
+
+    <div class="header-content">
+        <div class="header">
+            <a class="navbar-brand" href="#">Upload <span class="main-color">Page</span></a>
+        </div>
+    </div>
+    
+    <div class="formsubmission-c1">
+        <form class="" method="post" enctype="multipart/form-data">
+            <div class="header">
+                <h3 class=" h3cls_txt iTnlHn" style="font-size: 2.7em; color: darkgoldenrod;">
+                    Welcome <span class="main-color">Please complete the required fields according to proceed.</span>
+                </h3>
+            </div>
+            <div class="flex-image-div">
+                <img src="https://static.uacdn.net/production/_next/static/images/goal/girl.svg">
+            </div>
+
+
+            <!--            Upload Section -->
+            <div style="width: fit-content;display: flex;margin: 0 5%;">
+                <!-- upload section div-->
+                <div class="groupsection">
+                    <h3 style="margin-bottom: -10%;text-align: center;">Upload File </h3>
+                    <div class="main-wrapper">
+                        <div class="upload-main-wrapper">
+                            <span class="highlight"></span>
+                            <span class="bar"></span>
+                            <!--                                      <label>File Upload</label>-->
+
+                            <div class="upload-wrapper">
+                                <input type="file" id="upload-file" name="fileToUpload" accept=".zip,.rar,.7zip" required>
+
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                                     xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="xMidYMid meet"
+                                     viewBox="224.3881704980842 176.8527621722847 221.13266283524905 178.8472378277154"
+                                     width="221.13" height="178.85">
+                                    <defs>
+                                        <path d="M357.38 176.85C386.18 176.85 409.53 204.24 409.53 238.02C409.53 239.29 409.5 240.56 409.42 241.81C430.23 246.95 445.52 264.16 445.52 284.59C445.52 284.59 445.52 284.59 445.52 284.59C445.52 309.08 423.56 328.94 396.47 328.94C384.17 328.94 285.74 328.94 273.44 328.94C246.35 328.94 224.39 309.08 224.39 284.59C224.39 284.59 224.39 284.59 224.39 284.59C224.39 263.24 241.08 245.41 263.31 241.2C265.3 218.05 281.96 199.98 302.22 199.98C306.67 199.98 310.94 200.85 314.93 202.46C324.4 186.96 339.88 176.85 357.38 176.85Z"
+                                              id="b1aO7LLtdW"></path>
+                                        <path d="M306.46 297.6L339.79 297.6L373.13 297.6L339.79 255.94L306.46 297.6Z"
+                                              id="c4SXvvMdYD"></path>
+                                        <path d="M350.79 293.05L328.79 293.05L328.79 355.7L350.79 355.7L350.79 293.05Z"
+                                              id="b11si2zUk"></path>
+                                    </defs>
+                                    <g>
+                                        <g>
+                                            <g>
+                                                <use xlink:href="#b1aO7LLtdW" opacity="1" fill="#ffffff"
+                                                     fill-opacity="1"></use>
+                                            </g>
+                                            <g>
+                                                <g>
+                                                    <use xlink:href="#c4SXvvMdYD" opacity="1" fill="#363535"
+                                                         fill-opacity="1"></use>
+                                                </g>
+                                                <g>
+                                                    <use xlink:href="#b11si2zUk" opacity="1" fill="#363535"
+                                                         fill-opacity="1"></use>
+                                                </g>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <span class="file-upload-text" style="margin-left: 14px;">Upload!</span>
+                                <div class="file-success-text">
+                                    <svg version="1.1" id="check" xmlns="http://www.w3.org/2000/svg"
+                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                         viewBox="0 0 100 100" xml:space="preserve">
+                          <circle style="fill:rgba(0,0,0,0);stroke:#ffffff;stroke-width:10;stroke-miterlimit:10;"
+                                  cx="49.799" cy="49.746" r="44.757"></circle>
+                                        <polyline
+                                                style="fill:rgba(0,0,0,0);stroke:#ffffff;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;"
+                                                points="
+                              27.114,51 41.402,65.288 72.485,34.205 "></polyline>
+                          </svg>
+                                    <span>Successfully</span></div>
+                            </div>
+                            <p id="file-upload-name"></p>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!--            image section Div-->
+                <!--
+
+                                <div class="groupsection">
+                    <h3 style="text-align: center;">Image Upload</h3>
+                    <div id="imageDiv">
+                        <div class="wrapper">
+                            <div class="box">
+                                <div class="js--image-preview"></div>
+                                <div class="upload-options">
+                                    <label class="lb">
+                                        <input class="imageInput" type="file" name="imageToUpload" onclose="initImageUpload()" accept=".jpeg, .png, .eps, .gif, .jpg">
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+
+                <div class="group groupsection" style="top: 50px;">
+                    <input name="previewLink" type="text" required="" >
+                    <span class="highlight"></span>
+                    <span class="bar"></span>
+                    <label>Upload Image URL</label>
+                </div>
+            </div>
+
+
+            <div class="alert alert-success" role="alert" id="success_message"
+                 style=" margin-top: 15px;    margin-left: 4%;">
+                Success
+                <i class="glyphicon glyphicon-thumbs-up"></i> Thank you for Contributing, please continue.
+            </div>
+            <br>
+
+            <button name="upload" id="uploadbtn" type="submit" aria-label="continue"
+                    class="Button__StyleButtonHeaderLogin continueButton" style="margin: auto;">Submit
+            </button>
+
+            <!--            message box-->
+            <span></span>
+
+            <!-- Button -->
+            <div class="groupsection">
+                <label class="col-md-4 control-label"></label>
+            </div>
+        </form>
+
+
+    </div>
+
 </div>
 
-
+<!-- About Us Section -->
 <div id="aboutUs" class="main-about-us-section" style="display: none">
     <div class="header-content">
         <div class="header">

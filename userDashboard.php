@@ -1,16 +1,37 @@
 <?php
-include 'Classes/Admin.php';
-include 'Classes/Employee.php';
-session_start();
-$admin = new Admin();
-$emp =  new Employee();
-
-if (isset($_POST["productSubmit"])){
-
-    $emp->submitDetails($_POST['selectID'], $_POST['productPrice'], $_POST['selectID-payment'], $_POST['productInvestment'], $_POST['dateOfSubmit']);
-//    header("Location: userDashboard.php");
-}
-
+    include 'Classes/Admin.php';
+    include 'Classes/Employee.php';
+    
+    $access = new access();
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    
+    // $access->inactivityDestroy();
+    /*$flag = $access->loggedIn();
+    
+    if (!$flag) {
+        header("Location: index.php");
+    }*/
+    
+    $admin = new Admin();
+    $emp = new Employee();
+    $_SESSION['message'] = '';
+    if (isset($_POST["productSubmit"])) {
+        $emp->submitDetails($_POST['selectID'], $_POST['productPrice'], $_POST['selectID-payment'], $_POST['productInvestment'], $_POST['dateOfSubmit']);
+        
+        header("Location: userDashboard.php");
+    }
+    
+    if (isset($_POST["contiuneproductsub"])) {
+        
+        $message = 'Page Request Send By Client.' . "\n";
+        $message .= '<strong>Website URL : </strong>' . $_POST['websiteLink'] . "\n" . '<b>Product Information : </b>' . $_POST['info_product'] . "\n" . '<b>Date To Submit : </b>' . $_POST['datetoSubmit'];
+        $_SESSION['message'] = $message;
+        include "Classes/telmessage.php";
+        submitrequest($message);
+        header("Location: userDashboard.php");
+    }
 
 
 ?>
@@ -24,6 +45,7 @@ if (isset($_POST["productSubmit"])){
     <meta charset="utf-8">
     <title>Income-Coltax User-Dashboard</title>
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="Business-Salary-Website-Files/tableStyle.css" rel="stylesheet" type="text/css">
     <link href="Business-Salary-Website-Files/userDashBoard.css" rel="stylesheet" type="text/css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
 
@@ -101,6 +123,15 @@ if (isset($_POST["productSubmit"])){
         </li>
 
         <li>
+            <a id="uploadPageIcon" href="#" class="li-box">
+                <i class="fa fa-upload"></i>
+                <span class="nav-text">
+                            Pages List
+                        </span>
+            </a>
+        </li>
+
+        <li>
             <a id="aboutusIcon" href="#" class="li-box">
                 <i class="fa fa-bar-chart-o  "></i>
                 <span class="nav-text">
@@ -154,27 +185,47 @@ if (isset($_POST["productSubmit"])){
                 <div class="cont-fluid-box">
 
                     <div class="icon-color">
-                        <i class="fa fa-envelope fa-fw bg-primary fa-c3"></i>
-
+                        <!--                        <i class="fa fa-envelope fa-fw bg-primary fa-c3"></i>-->
+                        <i class="fa fa-hand-holding-usd fa-fw bg-primary fa-c3"></i>
                     </div>
                     <div class="info">
-                        <h3 class="box-h3">1,245</h3> <span>Emails</span>
-                        <p>Lorem ipsum dolor sit amet</p>
+                        <h3 class="box-h3"><?php echo $emp->getEmployeeMonthlySales() ?></h3> <span>Sales</span>
+                        <p>contains your monthly sales</p>
                     </div>
                 </div>
             </div>
+
             <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
                 <div class="cont-fluid-box">
 
                     <div class="icon-color">
-                        <i class="fa fa-file fa-fw danger fa-c3"></i>
-
+                        <!--                        <i class="fa fa-file fa-fw danger fa-c3"></i>-->
+                        <i class="fas fa-box-open fa-fw danger fa-c3"></i>
                     </div>
                     <div class="info">
-                        <h3 class="box-h3">34</h3> <span>Projects</span>
-                        <p>Lorem ipsum dolor sit amet</p>
+                        <h3 class="box-h3"><?php echo $emp->getEmployeeMonthlySales() ?></h3> <span>Products</span>
+                        <p>contains all product sales in month</p>
                     </div>
 
+
+                </div>
+            </div>
+
+            <div class="cont-fluid-boxdata cont-fluid-boxdata-c2">
+                <div class="cont-fluid-box">
+
+                    <div class="icon-color">
+                        <!--                        <i class="fa fa-users fa-fw success fa-c3"></i>-->
+                        <i class="fas fa-hand-holding-usd fa-fw success fa-c3"></i>
+                    </div>
+                    <div class="info">
+                        <h3 class="box-h3"><?php
+                                $result = (string)$emp->getEmployeeMonthlyInvestment();
+                                echo '$' . number_format("$result", 1)
+                            
+                            ?></h3> <span>Investment</span>
+                        <p>contains your monthly investment.</p>
+                    </div>
 
                 </div>
             </div>
@@ -188,8 +239,12 @@ if (isset($_POST["productSubmit"])){
                     </div>
 
                     <div class="info">
-                        <h3 class="box-h3">5,245</h3> <span>Users</span>
-                        <p>Lorem ipsum dolor sit amet</p>
+                        <h3 class="box-h3"><?php
+                                $result = (string)$emp->getEmployeeMonthlySalary();
+                                echo '$' . number_format("$result", 1)
+                            
+                            ?></h3> <span>Monthly Salary</span>
+                        <p>Well , you know where this is going.</p>
                     </div>
 
                 </div>
@@ -230,16 +285,16 @@ if (isset($_POST["productSubmit"])){
                 <div class="select">
                     <select name="selectID" id="selectID" required="">
                         <option selected disabled hidden>Products</option>
-<!--                        <option value="1">Scampage</option>
-                        <option value="2">Antibot Scampage</option>
-                        <option value="3">Monthly Cpanel</option>
-                        <option value="4">Hacked Cpanel</option>
-                        <option value="5">Amazon Smtp</option>
-                        <option value="6">Amazon Office Smtp</option>
-                        <option value="7">Monthly Rdp</option>
-                        <option value="8">Hacked Rdp</option>
-                        <option value="9">Email Leads</option>-->
-                        <?php $admin->getProductsList();?>
+                        <!--                        <option value="1">Scampage</option>
+                                                <option value="2">Antibot Scampage</option>
+                                                <option value="3">Monthly Cpanel</option>
+                                                <option value="4">Hacked Cpanel</option>
+                                                <option value="5">Amazon Smtp</option>
+                                                <option value="6">Amazon Office Smtp</option>
+                                                <option value="7">Monthly Rdp</option>
+                                                <option value="8">Hacked Rdp</option>
+                                                <option value="9">Email Leads</option>-->
+                        <?php $admin->getProductsList(); ?>
                     </select>
                 </div>
 
@@ -253,8 +308,9 @@ if (isset($_POST["productSubmit"])){
                 <div class="select">
                     <select name="selectID-payment" id="paymentID" required>
                         <option selected disabled hidden>Payment Method</option>
-<!--                        <option selected>--><?php //echo $admin->getProductPaymentType()?><!--</option-->
-                        <?php $admin->getPaymentTypesList();?>
+                        <!--                        <option selected>-->
+                        <?php //echo $admin->getProductPaymentType()?><!--</option-->
+                        <?php $admin->getPaymentTypesList(); ?>
                     </select>
                 </div>
 
@@ -291,7 +347,7 @@ if (isset($_POST["productSubmit"])){
 
                 <!-- Success message -->
                 <div class="alert alert-success" role="alert" id="success_message">Success <i
-                        class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
+                            class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
                 </div>
                 <br>
                 <!-- Button -->
@@ -309,9 +365,9 @@ if (isset($_POST["productSubmit"])){
 
             </fieldset>
         </form>
-
+        
         <?php
-
+        
         ?>
 
     </div>
@@ -319,6 +375,7 @@ if (isset($_POST["productSubmit"])){
 
 </div>
 
+<!-- Request Page Code -->
 <div id="requestPage" class="main-request-page-section" style="display:none ">
     <div class="header-content">
         <div class="header">
@@ -339,10 +396,11 @@ if (isset($_POST["productSubmit"])){
                 <img class="trust-c1" src="Business-Salary-Website-Files/Pictures/trust.svg" alt="Trust-image">
             </div>
             <div style="width: fit-content;display: flex; flex-direction: column">
-                <h3 color="#3C4852" class=" h3cls_<txt iTnlHn sub-head-c3">Complete all fields to generate a request for <strong>Developer's</strong></h3>
+                <h3 color="#3C4852" class=" h3cls_<txt iTnlHn sub-head-c3">Complete all fields to generate a request for
+                    <strong>Developer's</strong></h3>
                 <br>
                 <div class="group">
-                    <input type="text" required="" >
+                    <input name="websiteLink" type="text" required="">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Website-URL-Link</label>
@@ -356,7 +414,7 @@ if (isset($_POST["productSubmit"])){
                 </div>
 
                 <div class="group">
-                    <input id="product_to_submit" type="text" required="" name="date">
+                    <input id="product_to_submit" type="text" required="" name="datetoSubmit">
                     <span class="highlight"></span>
                     <span class="bar"></span>
                     <label>Date To Submit</label>
@@ -381,15 +439,15 @@ if (isset($_POST["productSubmit"])){
 
                 <!-- Success message -->
                 <div class="alert alert-success" role="alert" id="success_message">Success <i
-                        class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
+                            class="glyphicon glyphicon-thumbs-up"></i> Thankyou For contributing , please proceed.
                 </div>
                 <br>
                 <!-- Button -->
                 <div class="group">
                     <label class="col-md-4 control-label"></label>
 
-                    <div id="continueButton">
-                        <button id="loginButton" type="button" aria-label="Login"
+                    <div id="productRequestButton">
+                        <button name="contiuneproductsub" id="productRequestButton" type="submit" aria-label="Login"
                                 class="Button__StyleButtonHeaderLogin continueButton">
                             Continue
                         </button>
@@ -404,6 +462,19 @@ if (isset($_POST["productSubmit"])){
 
 </div>
 
+<!-- Pages List-->
+<div id="uploadPage" class="main-product-submission-section" style="display: none ">
+
+    <div class="header-content">
+        <div class="header">
+            <a class="navbar-brand" href="#">Pages <span class="main-color">List</span></a>
+        </div>
+    </div>
+    <?php $emp->getListOfUploadedPages(); ?>
+
+</div>
+
+<!-- About Us code-->
 <div id="aboutUs" class="main-about-us-section" style="display: none">
     <div class="header-content">
         <div class="header">
@@ -422,15 +493,18 @@ if (isset($_POST["productSubmit"])){
                     <div class="wave wave2"></div>
                     <div class="wave wave3"></div>
                 </div>
-                <img class="profile-img" src="../Business-Salary-Website-Files/pp.jpg" alt="my picture profile.">
+                <img class="profile-img" src="Business-Salary-Website-Files/Pictures/pp.jpg" alt="my picture profile.">
             </div>
 
             <div class="card-body">
                 <h2>OneEyedOwl</h2>
-                <p>My name OneEyedOwl , Dedicated and Performance-driven software engineering Intern with pro-active approach and determination to solve and successfully finish all assigned task. capable of showing firm and positive response while working under pressure. Effective team player offering extraordinary analytical skills and the important ability to think critically. Eager to absorb as much knowledge and insight as possible in pursuance of my goals.</p>
+                <p>My name OneEyedOwl , Dedicated and Performance-driven software engineering Intern with pro-active
+                    approach and determination to solve and successfully finish all assigned task. capable of showing
+                    firm and positive response while working under pressure. Effective team player offering
+                    extraordinary analytical skills and the important ability to think critically. Eager to absorb as
+                    much knowledge and insight as possible in pursuance of my goals.</p>
                 <a href="http://google.com.pk" class="btn">check my work</a>
             </div>
-
 
 
         </div>
@@ -444,14 +518,21 @@ if (isset($_POST["productSubmit"])){
                     <div class="wave wave2"></div>
                     <div class="wave wave3"></div>
                 </div>
-                <img class="profile-img" src="../Business-Salary-Website-Files/zero.jpeg" alt="my picture profile.">
+                <img class="profile-img" src="Business-Salary-Website-Files/Pictures/zero.jpeg"
+                     alt="my picture profile.">
             </div>
             <div class="card-body">
-                <h2><italic>Mr</italic>.Zero</h2>
-                <p>My name Mr.Zero , Dedicated and Performance-driven software engineering Intern with pro-active approach and determination to solve and successfully finish all assigned task. capable of showing firm and positive response while working under pressure. Effective team player offering extraordinary analytical skills and the important ability to think critically. Eager to absorb as much knowledge and insight as possible in pursuance of my goals.</p>
+                <h2>
+                    <italic>Mr</italic>
+                    .Zero
+                </h2>
+                <p>My name Mr.Zero , Dedicated and Performance-driven software engineering Intern with pro-active
+                    approach and determination to solve and successfully finish all assigned task. capable of showing
+                    firm and positive response while working under pressure. Effective team player offering
+                    extraordinary analytical skills and the important ability to think critically. Eager to absorb as
+                    much knowledge and insight as possible in pursuance of my goals.</p>
                 <a href="http://google.com.pk" class="btn">check my work</a>
             </div>
-
 
 
         </div>

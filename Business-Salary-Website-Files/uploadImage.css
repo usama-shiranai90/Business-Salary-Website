@@ -1,0 +1,331 @@
+
+/*Upload Chodak start from here*/
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900&display=swap');
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+
+@font-face {
+    font-family: AvertaStd;
+    font-style: normal;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-regular.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-regular.otf) format("opentype");
+    font-display: swap
+}
+
+@font-face {
+    font-family: AvertaStd;
+    font-weight: 700;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-bold.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-bold.otf) format("opentype");
+    font-display: swap
+}
+
+@font-face {
+    font-family: AvertaStd;
+    font-weight: 600;
+    src: url(https://static.uacdn.net/prod/fonts/avertastd-semibold.woff) format("woff"), url(https://static.uacdn.net/prod/fonts/avertastd-semibold.otf) format("opentype");
+    font-display: swap
+}
+
+svg:not(:root) {
+    overflow: hidden;
+}
+.main-wrapper {
+    max-width: 1170px;
+    margin: 0 auto;
+    text-align: center;
+}
+.upload-main-wrapper {
+    width: 220px;
+    margin: 0 auto;
+}
+
+#file-upload-name {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+}
+
+.upload-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 40px auto 0;
+    position: relative;
+    cursor: pointer;
+    background-color: #5c9e6d;
+    padding: 8px 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: 0.2s linear all;
+    color: #ffffff;
+}
+
+.upload-wrapper input[type=file] {
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    top: 0;
+    bottom: 0;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.upload-wrapper > svg {
+    width: 50px;
+    height: auto;
+    cursor: pointer;
+}
+
+.upload-wrapper.success > svg {
+    transform: translateX(-200px);
+}
+
+.upload-wrapper.uploaded {
+    transition: 0.2s linear all;
+    width: 60px;
+    border-radius: 50%;
+    height: 60px;
+    text-align: center;
+}
+
+.upload-wrapper .file-upload-text {
+    position: absolute;
+    left: 80px;
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s linear all;
+}
+
+.upload-wrapper.uploaded .file-upload-text {
+    text-indent: -999px;
+    margin: 0;
+}
+
+.file-success-text {
+    opacity: 0;
+    transition: 0.2s linear all;
+    visibility: hidden;
+    transform: translateX(200px);
+    position: absolute;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-success-text svg {
+    width: 25px;
+    height: auto;
+}
+
+.file-success-text span {
+    margin-left: 15px;
+}
+
+.upload-wrapper.success .file-success-text {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.upload-wrapper.success.uploaded .file-success-text {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+}
+
+.upload-wrapper.success.uploaded .file-success-text span {
+    display: none;
+}
+
+.upload-wrapper .file-success-text circle {
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    transition: 1s linear all;
+    transition-delay: 1.4s;
+}
+
+.upload-wrapper.success .file-success-text circle {
+    stroke-dashoffset: 0;
+}
+
+.upload-wrapper .file-success-text polyline {
+    stroke-dasharray: 380;
+    stroke-dashoffset: 380;
+    transition: 1s linear all;
+    transition-delay: 2s;
+}
+
+.upload-wrapper.success .file-success-text polyline {
+    stroke-dashoffset: 0;
+}
+
+.upload-wrapper.success .file-upload-text {
+    -webkit-animation-name: bounceOutLeft;
+    animation-name: bounceOutLeft;
+    -webkit-animation-duration: 0.2s;
+    animation-duration: 0.2s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceOutLeft {
+    20% {
+        opacity: 1;
+        -webkit-transform: translate3d(20px, 0, 0);
+        transform: translate3d(20px, 0, 0);
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+}
+@keyframes bounceOutLeft {
+    20% {
+        opacity: 1;
+        -webkit-transform: translate3d(20px, 0, 0);
+        transform: translate3d(20px, 0, 0);
+    }
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-2000px, 0, 0);
+        transform: translate3d(-2000px, 0, 0);
+    }
+}
+
+#imageDiv {
+    /*font-family: "Raleway", sans-serif;*/
+    /*width: 50%;*/
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.box {
+    display: block;
+    min-width: 300px;
+    height: 300px;
+    margin: 10px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    overflow: hidden;
+}
+
+.upload-options {
+    position: relative;
+    height: 75px;
+    background-color: #5c9e6d;
+    cursor: pointer;
+    overflow: hidden;
+    text-align: center;
+    transition: background-color ease-in-out 150ms;
+}
+.upload-options:hover {
+    background-color: #7fb1b3;
+}
+.upload-options .imageInput {
+    height: 53.1px;
+    opacity: 0;
+    overflow: hidden;
+    z-index: -1;
+}
+.upload-options .lb {
+    display: flex;
+    align-items: center;
+    pointer-events: all;
+    width: 100%;
+    height: 76%;
+    font-weight: 400;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    cursor: pointer;
+    overflow: hidden;
+}
+.upload-options .lb::after {
+    content: "add";
+    /*font-family: "Material Icons";*/
+    position: absolute;
+    font-size: 2.5rem;
+    color: #e6e6e6;
+    top: calc(50% - 1.2rem);
+    left: calc(50% - 1.25rem);
+    z-index: 0;
+}
+.upload-options .lb span {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+}
+.upload-options .lb span:hover i.material-icons {
+    color: lightgray;
+}
+
+.js--image-preview {
+    height: 225px;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-image: url("");
+    background-color: white;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.js--image-preview::after {
+    content: "photo_size_select_actual";
+    /*font-family: "Material Icons";*/
+    position: relative;
+    font-size: 4.5em;
+    color: #e6e6e6;
+    top: calc(50% - 2.2rem);
+    left: calc(50% - 2.25rem);
+    z-index: 0;
+}
+.js--image-preview.js--no-default::after {
+    display: none;
+}
+.js--image-preview:nth-child(2) {
+    background-image: url("http://bastianandre.at/giphy.gif");
+}
+
+@-webkit-keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+@keyframes ripple {
+    100% {
+        opacity: 0;
+        transform: scale(2.5);
+    }
+}
+
+
+
+.groupsection{
+    position: relative;
+    margin: 4% 15% 0% 0%;
+    /*border: 2px solid;*/
+}

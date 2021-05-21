@@ -177,13 +177,13 @@ button, input, optgroup, select, textarea {
     z-index: 1;
 }
 
-@media (max-width: 70.95em)
+@media (max-width: 70.95em) {
     .tri-div {
         border-left-width: 39px;
         border-right-width: 39px;
         left: calc(50% - 39px);
     }
-
+}
 
     h2 {
         margin-top: 20px;
@@ -305,12 +305,12 @@ button, input, optgroup, select, textarea {
         display: flex;
     }
 
-    @media (min-width: 70.95em)
+    @media (min-width: 70.95em) {
         .ghQkmO > :nth-child(2n) {
             margin-left: 96px;
         }
 
-
+    }
         .multi-contact-c2 {
             background-color: rgba(255, 255, 255, 1.00);
             box-shadow: rgb(221 230 237 /50%) 0px 16px 32px 0px;
@@ -403,7 +403,7 @@ button, input, optgroup, select, textarea {
             margin: auto;
             margin: 20px 0px 0px 32px;
         }
-    }
+
 
     #myloginNav h2 {
         text-align: center;

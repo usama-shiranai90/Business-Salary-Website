@@ -68,6 +68,11 @@
     line-height: 150% !important;
 }
 
+/* upload sale summary back btn */
+#back{
+    margin: 20px;
+}
+
 
 .if-c1{
     border: transparent;
@@ -361,11 +366,11 @@ span {
 }
 
 
-@media (min-width: 992px)
+@media (min-width: 992px) {
     .col-md-12 {
         width: 100%;
     }
-
+}
 
 
 /* Form Submission*/

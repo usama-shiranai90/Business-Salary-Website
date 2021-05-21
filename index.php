@@ -13,16 +13,20 @@ $notify = 'notify -hidden';
 
 if (isset($_POST["signin"])) {
     if (!empty($_POST["username"]) && !empty($_POST["password"])) {
+        
+        
         $employeeAuthenticated = $emp->verifyEmployee($_POST["username"], $_POST["password"]);
-        if ($employeeAuthenticated) {
+        echo 'Checking what the fuck is this cunt returing :'.$employeeAuthenticated.'<---';
+        if ($employeeAuthenticated == 1) {
 
             $_SESSION["login_time_stamp"] = time();
             $_SESSION["loggedIn"] = true;
             header("Location: userDashboard.php");
 
-        } else {
+        } 
+        else {
             $adminAuthenticated = $manipulate->verifyAdmin($_POST["username"], $_POST["password"]);
-            if ($adminAuthenticated)
+            if ($adminAuthenticated == 1)
             {
                 $_SESSION["login_time_stamp"] = time();
                 $_SESSION["loggedIn"] = true;
@@ -40,6 +44,7 @@ if (isset($_POST["signin"])) {
 }
 
 ?>
+
 
 <!doctype html>
 <html lang="en">
@@ -186,7 +191,7 @@ if (isset($_POST["signin"])) {
 
             <h5 color="#3C4852" class="H5-ozdkiq-0 h5-c2"> Continue your journey by inserting credentials </h5>
             <div class="group">
-                <input name="username" type="text" value="bukhari" required>
+                <input name="username" type="text" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>UserID</label>
@@ -194,11 +199,13 @@ if (isset($_POST["signin"])) {
 
 
             <div class="group">
-                <input name="password" type="password" value="usama123" required>
+                <input name="password" type="password" required>
                 <span class="highlight"></span>
                 <span class="bar"></span>
                 <label>Password</label>
             </div>
+            
+            
             <a class="forgotpass" href="#">Forgot your password?</a>
 
             <button name="signin" type="submit" aria-label="Login"

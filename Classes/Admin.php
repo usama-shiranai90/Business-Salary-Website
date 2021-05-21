@@ -14,18 +14,26 @@ class Admin
         $this->access =  new access();
     }
 
-    public function verifyAdmin($username, $password): bool
+    public function verifyAdmin($username, $password)
     {
-        $sql = /** @lang text */
-            "SELECT * FROM admin where username = \"$username\" and password = \"$password\"";
+        //  $sql =  "SELECT * FROM admin where username = '$username' and password = '$password'";
+      
+      $sql = /** @lang text */
+            "SELECT * FROM admin where username = '$username' and password = '$password'";
         $result = $this->connection->query($sql);
 
-        if (mysqli_num_rows($result) == 1)
-            return true;
-        else
+        if(mysqli_num_rows($result) == 1)
+        {
+           foreach ($result as $row) {
+                return true;
+            }
+        }
             return false;
 
+
     }
+
+
 
     public function getProductsList()
     {
@@ -319,7 +327,51 @@ class Admin
         }
         return $salaryToPay;
     }
+    
 
+    
+    public function uploadFile(){
+        $target_path = "D:/TestingPath/";
+        $fileName = null;
+        $result = "";
+//    If the destination file already exists, it will be overwritten.
+//    using tmp_name because file is stored in temporary location at first with a temporary name
+        if($_FILES['fileToUpload']['name'] != null){
+            $target_path_file = $target_path.basename( $_FILES['fileToUpload']['name']);
+            $path_parts = pathinfo($target_path_file);
+            $fileName = $path_parts['filename'];
+            $link = $_POST['previewLink'];
+            
+            if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $target_path_file)) {
+                echo "===========================================";
+                $findingQuery= "select zipfilename from pagezips where zipfilename = '$fileName';";
+                
+                $res = $this->connection->query($findingQuery);
+                foreach ($res as $row) {
+                    $deleteQuery = "delete from pagezips where zipfilename = '$fileName';";
+                    $this->connection->query($deleteQuery);
+                }
+                
+                $sql = "insert into pagezips (zipfilename, previewLink) values ('$fileName','$link');";
+                
+                if ($this->connection->query($sql) === TRUE) {
+                    $result.="File uploaded successfully!\n";
+                }
+                else {
+                    $result.= "There was an error, in updating the database";
+                    $result.= $this->connection->error;
+                }
+            }
+            else {
+                $result.="Sorry, file not uploaded, please try again!\n";
+            }
+        }
+
+        
+        return $result;
+    }
+    
+    
 }
 
 ?>
